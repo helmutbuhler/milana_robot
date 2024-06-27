@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{e5bb179c-28f6-4719-8288-d2a31003a647}</ProjectGuid>
+    <Keyword>Linux</Keyword>
+    <RootNamespace>robot</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <ApplicationType>Linux</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <TargetLinuxPlatform>Raspberry</TargetLinuxPlatform>
+    <LinuxProjectType>{8748239F-558C-44D1-944B-07B09C35B330}</LinuxProjectType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <ItemGroup>
+    <ClCompile Include="..\common\geometry.cpp" />
+    <ClCompile Include="..\common\helper.cpp" />
+    <ClCompile Include="..\common\leaning.cpp" />
+    <ClCompile Include="..\common\network.cpp" />
+    <ClCompile Include="..\common\odrive\endpoint.cpp" />
+    <ClCompile Include="..\common\odrive\ODrive.cpp" />
+    <ClCompile Include="..\common\time_helper.cpp" />
+    <ClCompile Include="asr_client.cpp" />
+    <ClCompile Include="balance_control.cpp" />
+    <ClCompile Include="battery.cpp" />
+    <ClCompile Include="body_acc.cpp" />
+    <ClCompile Include="command.cpp" />
+    <ClCompile Include="foot_control.cpp" />
+    <ClCompile Include="ik.cpp" />
+    <ClCompile Include="imu\sensor_fusion.cpp" />
+    <ClCompile Include="imu\spi_imu.cpp" />
+    <ClCompile Include="joystick.cpp" />
+    <ClCompile Include="leg_control.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="pin.cpp" />
+    <ClCompile Include="server.cpp" />
+    <ClCompile Include="servo.cpp" />
+    <ClCompile Include="statistics.cpp" />
+    <ClCompile Include="tts_client.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\common.h" />
+    <ClInclude Include="..\common\geometry.h" />
+    <ClInclude Include="..\common\helper.h" />
+    <ClInclude Include="..\common\leaning.h" />
+    <ClInclude Include="..\common\network.h" />
+    <ClInclude Include="..\common\odrive\endpoint.h" />
+    <ClInclude Include="..\common\odrive\json.hpp" />
+    <ClInclude Include="..\common\odrive\ODrive.h" />
+    <ClInclude Include="..\common\odrive\odrive_helper.h" />
+    <ClInclude Include="..\common\time_helper.h" />
+    <ClInclude Include="asr_client.h" />
+    <ClInclude Include="balance_control.h" />
+    <ClInclude Include="battery.h" />
+    <ClInclude Include="body_acc.h" />
+    <ClInclude Include="command.h" />
+    <ClInclude Include="foot_control.h" />
+    <ClInclude Include="ik.h" />
+    <ClInclude Include="imu\LSM6DS3.h" />
+    <ClInclude Include="imu\sensor_fusion.h" />
+    <ClInclude Include="imu\spi_imu.h" />
+    <ClInclude Include="joystick.h" />
+    <ClInclude Include="leg_control.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="pin.h" />
+    <ClInclude Include="server.h" />
+    <ClInclude Include="servo.h" />
+    <ClInclude Include="statistics.h" />
+    <ClInclude Include="tts_client.h" />
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>/usr/include/speech_tools;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>usb-1.0;pthread;asound</LibraryDependencies>
+      <AdditionalLibraryDirectories>/usr/local/cuda/lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>/usr/include/speech_tools;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RelaxIEEE>true</RelaxIEEE>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>usb-1.0;pthread;asound</LibraryDependencies>
+      <AdditionalLibraryDirectories>/usr/local/cuda/lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

@@ -1,0 +1,8 @@
+Tag: b1620
+Revision: fe680e3d1080a765e5d3150ffd7bab189742898d
+Author: Georgi Gerganov <ggerganov@gmail.com>
+Date: 07.12.2023 21:26:54
+Message:
+sync : ggml (new ops, tests, backend, etc.) (#4359)
+* sync : ggml (part 1)
+....

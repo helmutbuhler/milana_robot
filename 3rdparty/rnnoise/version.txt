@@ -1,0 +1,2 @@
+https://github.com/mumble-voip/rnnoise/tree/use_malloc-definition
+dffc10ee4bf25e699849f99d33616b456b617a9e

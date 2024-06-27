@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\3rdparty\llama.cpp\llama-util.h" />
+    <ClInclude Include="..\3rdparty\llama.cpp\llama.h" />
+    <ClInclude Include="..\3rdparty\llama.cpp\ggml-cuda.h" />
+    <ClInclude Include="..\3rdparty\llama.cpp\ggml.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\include\rnnoise.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\arch.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\celt_lpc.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\common.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\kiss_fft.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\opus_types.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\pitch.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\rnn.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\rnn_data.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\tansig_table.h" />
+    <ClInclude Include="..\3rdparty\rnnoise\src\_kiss_fft_guts.h" />
+    <ClInclude Include="..\3rdparty\whisper.cpp\whisper.h" />
+    <ClInclude Include="..\common\helper.h" />
+    <ClInclude Include="..\common\network.h" />
+    <ClInclude Include="..\common\time_helper.h" />
+    <ClInclude Include="..\llm\chat.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\3rdparty\llama.cpp\ggml-alloc.c" />
+    <ClCompile Include="..\3rdparty\llama.cpp\ggml-backend.c" />
+    <ClCompile Include="..\3rdparty\llama.cpp\ggml-quants.c" />
+    <ClCompile Include="..\3rdparty\llama.cpp\llama.cpp" />
+    <ClCompile Include="..\3rdparty\llama.cpp\ggml.c" />
+    <ClCompile Include="..\3rdparty\rnnoise\src\celt_lpc.c" />
+    <ClCompile Include="..\3rdparty\rnnoise\src\denoise.c" />
+    <ClCompile Include="..\3rdparty\rnnoise\src\kiss_fft.c" />
+    <ClCompile Include="..\3rdparty\rnnoise\src\pitch.c" />
+    <ClCompile Include="..\3rdparty\rnnoise\src\rnn.c" />
+    <ClCompile Include="..\3rdparty\rnnoise\src\rnn_data.c" />
+    <ClCompile Include="..\3rdparty\rnnoise\src\rnn_reader.c" />
+    <ClCompile Include="..\3rdparty\whisper.cpp\whisper.cpp" />
+    <ClCompile Include="..\common\helper.cpp" />
+    <ClCompile Include="..\common\network.cpp" />
+    <ClCompile Include="..\common\time_helper.cpp" />
+    <ClCompile Include="..\llm\chat.cpp" />
+    <ClCompile Include="asr_server.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\3rdparty\rnnoise\src\compile.sh" />
+    <None Include="..\3rdparty\rnnoise\src\rnn_train.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="..\3rdparty\llama.cpp\ggml-cuda.cu" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{3EC6D861-76FE-4C98-B514-F143D8D1A9A8}</ProjectGuid>
+    <RootNamespace>whispertest</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 12.1.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>../3rdparty/rnnoise/include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <PreprocessorDefinitions>GGML_USE_CUBLAS;USE_MALLOC;_USE_MATH_DEFINES;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>cublas.lib;cudart_static.lib;libopenblas.lib;portaudio.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../3rdparty/openblas;../3rdparty/portaudio;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <CudaCompile>
+      <CodeGeneration>compute_75,sm_75;%(CodeGeneration)</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>../3rdparty/rnnoise/include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <PreprocessorDefinitions>GGML_USE_CUBLAS;USE_MALLOC;_USE_MATH_DEFINES;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>cublas.lib;cudart_static.lib;libopenblas.lib;portaudio.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../3rdparty/openblas;../3rdparty/portaudio;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <CudaCompile>
+      <CodeGeneration>compute_75,sm_75;%(CodeGeneration)</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 12.1.targets" />
+  </ImportGroup>
+</Project>

@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="control_ui.cpp" />
+    <ClCompile Include="control_ui_client.cpp" />
+    <ClCompile Include="webcam.cpp" />
+    <ClCompile Include="video_recorder.cpp" />
+    <ClCompile Include="pendulum_simulation.cpp" />
+    <ClCompile Include="..\3rdparty\implot\implot.cpp">
+      <Filter>implot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\implot\implot_demo.cpp">
+      <Filter>implot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\implot\implot_items.cpp">
+      <Filter>implot</Filter>
+    </ClCompile>
+    <ClCompile Include="plot.cpp" />
+    <ClCompile Include="..\3rdparty\jpeg\jpgd.cpp">
+      <Filter>jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\jpeg\jpge.cpp">
+      <Filter>jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\imgui\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\imgui\imgui_impl_glfw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\imgui\imgui_impl_opengl2.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\imgui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\imgui\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="simulation_ui.cpp" />
+    <ClCompile Include="..\common\geometry.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\helper.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\leaning.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\network.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\time_helper.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="control_ui_client.h" />
+    <ClInclude Include="control_ui.h" />
+    <ClInclude Include="webcam.h" />
+    <ClInclude Include="video_recorder.h" />
+    <ClInclude Include="pendulum_simulation.h" />
+    <ClInclude Include="plot.h" />
+    <ClInclude Include="..\3rdparty\implot\implot.h">
+      <Filter>implot</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\implot\implot_internal.h">
+      <Filter>implot</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\jpeg\jpgd.h">
+      <Filter>jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\jpeg\jpge.h">
+      <Filter>jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\jpeg\jpgd_idct.h">
+      <Filter>jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\imgui\imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\imgui\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\imgui\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\imgui\imgui_impl_glfw.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\imgui\imgui_impl_opengl2.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\imgui\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\imgui\imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\imgui\imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation_ui.h" />
+    <ClInclude Include="..\common\geometry.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\leaning.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\network.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\time_helper.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\common.h">
+      <Filter>common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{7627cdde-d024-4583-b654-e7c74b2b5806}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="implot">
+      <UniqueIdentifier>{a65ac1f6-50cc-419f-a36c-3e8e612c7597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jpeg">
+      <UniqueIdentifier>{f1f87431-172d-4c39-931e-91432469b52e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{f84cfb81-20cc-4b5a-8aa3-a7285794bcc7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

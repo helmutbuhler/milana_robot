@@ -1,0 +1,6 @@
+Revision: 6335933a5b2dfdac8541d3e748201d1bc1e3ec50
+Author: Kreijstal <rainb@tfwno.gf>
+Date: 10.12.2023 18:47:52
+Message:
+cmake : Fix bug in httplib.h for mingw (#1615)
+

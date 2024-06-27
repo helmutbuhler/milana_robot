@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\3rdparty\rnnoise\src\_kiss_fft_guts.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\src\arch.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\src\celt_lpc.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\src\common.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\src\kiss_fft.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\src\opus_types.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\src\pitch.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\src\rnn.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\src\rnn_data.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\src\tansig_table.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\rnnoise\include\rnnoise.h">
+      <Filter>rnnoise</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\llama.cpp\ggml-cuda.h">
+      <Filter>llama</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\llama.cpp\llama.h">
+      <Filter>llama</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\llama.cpp\llama-util.h">
+      <Filter>llama</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\llama.cpp\ggml.h">
+      <Filter>llama</Filter>
+    </ClInclude>
+    <ClInclude Include="..\llm\chat.h" />
+    <ClInclude Include="..\3rdparty\whisper.cpp\whisper.h">
+      <Filter>whisper.cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\helper.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\network.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\time_helper.h">
+      <Filter>common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\3rdparty\rnnoise\src\pitch.c">
+      <Filter>rnnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\rnnoise\src\rnn.c">
+      <Filter>rnnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\rnnoise\src\rnn_data.c">
+      <Filter>rnnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\rnnoise\src\rnn_reader.c">
+      <Filter>rnnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\rnnoise\src\celt_lpc.c">
+      <Filter>rnnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\rnnoise\src\denoise.c">
+      <Filter>rnnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\rnnoise\src\kiss_fft.c">
+      <Filter>rnnoise</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\llama.cpp\llama.cpp">
+      <Filter>llama</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\llama.cpp\ggml.c">
+      <Filter>llama</Filter>
+    </ClCompile>
+    <ClCompile Include="..\llm\chat.cpp" />
+    <ClCompile Include="..\3rdparty\whisper.cpp\whisper.cpp">
+      <Filter>whisper.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="asr_server.cpp" />
+    <ClCompile Include="..\3rdparty\llama.cpp\ggml-alloc.c">
+      <Filter>llama</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\llama.cpp\ggml-backend.c">
+      <Filter>llama</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\llama.cpp\ggml-quants.c">
+      <Filter>llama</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\helper.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\network.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\time_helper.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="rnnoise">
+      <UniqueIdentifier>{f85b5629-1199-4e14-86c5-26e821078755}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="llama">
+      <UniqueIdentifier>{bce13fd2-712c-4e7c-8019-46c5bb01eb81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="whisper.cpp">
+      <UniqueIdentifier>{5733869c-58c8-4247-81da-68b60b149ba2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{ef46e036-5834-4172-8011-7f03d4f55cfe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\3rdparty\rnnoise\src\rnn_train.py">
+      <Filter>rnnoise</Filter>
+    </None>
+    <None Include="..\3rdparty\rnnoise\src\compile.sh">
+      <Filter>rnnoise</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="..\3rdparty\llama.cpp\ggml-cuda.cu">
+      <Filter>llama</Filter>
+    </CudaCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="battery.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="servo.cpp" />
+    <ClCompile Include="pin.cpp" />
+    <ClCompile Include="server.cpp" />
+    <ClCompile Include="joystick.cpp" />
+    <ClCompile Include="leg_control.cpp" />
+    <ClCompile Include="foot_control.cpp" />
+    <ClCompile Include="balance_control.cpp" />
+    <ClCompile Include="imu\spi_imu.cpp">
+      <Filter>imu</Filter>
+    </ClCompile>
+    <ClCompile Include="imu\sensor_fusion.cpp">
+      <Filter>imu</Filter>
+    </ClCompile>
+    <ClCompile Include="body_acc.cpp" />
+    <ClCompile Include="statistics.cpp" />
+    <ClCompile Include="tts_client.cpp" />
+    <ClCompile Include="asr_client.cpp" />
+    <ClCompile Include="command.cpp" />
+    <ClCompile Include="ik.cpp" />
+    <ClCompile Include="..\common\odrive\ODrive.cpp">
+      <Filter>odrive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\odrive\endpoint.cpp">
+      <Filter>odrive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\geometry.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\helper.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\leaning.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\network.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\time_helper.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="odrive">
+      <UniqueIdentifier>{a131b949-d693-4696-81ee-c3c41f2f8c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imu">
+      <UniqueIdentifier>{c1142d30-1665-4989-8fa6-1c473452ee0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{cdf06f21-e1e3-4385-983a-60d2e4f88caf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pin.h" />
+    <ClInclude Include="server.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="battery.h" />
+    <ClInclude Include="servo.h" />
+    <ClInclude Include="joystick.h" />
+    <ClInclude Include="leg_control.h" />
+    <ClInclude Include="foot_control.h" />
+    <ClInclude Include="balance_control.h" />
+    <ClInclude Include="imu\spi_imu.h">
+      <Filter>imu</Filter>
+    </ClInclude>
+    <ClInclude Include="imu\LSM6DS3.h">
+      <Filter>imu</Filter>
+    </ClInclude>
+    <ClInclude Include="imu\sensor_fusion.h">
+      <Filter>imu</Filter>
+    </ClInclude>
+    <ClInclude Include="body_acc.h" />
+    <ClInclude Include="statistics.h" />
+    <ClInclude Include="tts_client.h" />
+    <ClInclude Include="asr_client.h" />
+    <ClInclude Include="command.h" />
+    <ClInclude Include="ik.h" />
+    <ClInclude Include="..\common\odrive\ODrive.h">
+      <Filter>odrive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\odrive\odrive_helper.h">
+      <Filter>odrive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\odrive\endpoint.h">
+      <Filter>odrive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\odrive\json.hpp">
+      <Filter>odrive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\geometry.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\helper.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\leaning.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\network.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\time_helper.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\common.h">
+      <Filter>common</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

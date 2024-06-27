@@ -1,0 +1,4 @@
+1.0.27
+from: https://github.com/libusb/libusb/releases/tag/v1.0.27
+
+Deleted examples, MinGW stuff, MS32 and MS64/dll versions to save some space.
