@@ -74,7 +74,7 @@ const char *const models[num_models]
 	//"ggml-tiny.en.bin",
 	//"ggml-base.bin",
 	//"ggml-base.en.bin",
-	"ggml-small.bin",/////////////
+	"ggml-small.bin",
 	//"ggml-small.en.bin",
 	//"ggml-medium.bin",
 	//"ggml-medium.en.bin",
@@ -85,7 +85,6 @@ const char *const models[num_models]
 //const char* model_transcribe = MODEL_PATH "ggml-base.en.bin";
 //const char* model_transcribe = MODEL_PATH "ggml-small.bin";
 //const char* model_transcribe = MODEL_PATH "ggml-medium.bin";
-//const char* model_transcribe = MODEL_PATH "ggml-large.bin";/////////
 const char* model_transcribe = MODEL_PATH "ggml-large-v3.bin";
 
 #define _CRT_SECURE_NO_WARNINGS
