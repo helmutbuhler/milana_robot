@@ -76,7 +76,7 @@ std::string replace(const std::string & s, const std::string & from, const std::
 
 extern bool running;
 
-const int32_t n_threads  = 16;//std::min(4, (int32_t) std::thread::hardware_concurrency());
+const int32_t n_threads = 16;//std::min(4, (int32_t) std::thread::hardware_concurrency());
 const bool verbose_prompt = true;
 
 //const std::string person      = "USER";
@@ -87,127 +87,6 @@ const std::string chat_symb = "";
 
 //const std::string bot_name  = "ASSISTANT";
 const std::string bot_name  = "\n\n### Response:\n\n";
-
-//const std::string k_prompt_whisper = R"(A conversation with a person called {1}.)";
-/*
-const std::string k_prompt_llama = R"(Text transcript of a never ending dialog, where {0} interacts with an AI assistant named {1}.
-{1} is helpful, kind, honest, friendly, good at writing and never fails to answer {0}’s requests immediately and with details and precision.
-There are no annotations like (30 seconds passed...) or (to himself), just what {0} and {1} say aloud to each other.
-The transcript only includes text, it does not include markup like HTML and Markdown.
-{1} responds with short and concise answers.
-
-{0}{4} Hello, {1}!
-{1}{4} Hello {0}! How may I help you today?
-{0}{4} What time is it?
-{1}{4} It is {2} o'clock.
-{0}{4} What year is it?
-{1}{4} We are in {3}.
-{0}{4} What is a cat?
-{1}{4} A cat is a domestic species of small carnivorous mammal. It is the only domesticated species in the family Felidae.
-{0}{4} Name a color.
-{1}{4} Blue
-{0}{4})";
-*/
-
-/*const std::string k_prompt_llama = R"(Text transcript of a never ending dialog, where {0} interacts with a robot named {1}.
-{1} is sarcastic, mean and never fails to answer {0}’s requests immediately.
-{1} is a robot balancing on two wheels. It can jump by saying "jump". That command must be spelled exactly like that with quotationmarks.
-
-{0}{4})";
-*/
-
-/*
-const std::string k_prompt_llama = R"(A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed answers to the user's questions.
-The assistant can put these commands into the transcript to execute some moves (a command just contains the word enclosed by percent signs):
-%jump% jump
-%left% turn left
-%right% turn right
-There are no other commands and the command must be spelled exactly like that.
-
-{0}{4} Hello!
-{1}{4} Hello! How may I help you today?
-{0}{4} What time is it?
-{1}{4} It is {2} o'clock.
-{0}{4} What year is it?
-{1}{4} We are in {3}.
-{0}{4} What is a cat?
-{1}{4} A cat is a domestic species of small carnivorous mammal. It is the only domesticated species in the family Felidae.
-{0}{4} Name a color.
-{1}{4} Blue
-{0}{4} In the following, I want you to answer in a sarcastic and mean way. You should act like you are a robot balancing on two wheels. You have no cameras or other sensors to capture the environment.
-{1}{4} Sure thing, let me just activate my sarcasm mode... So, what's up human? Do you need something or are you just wasting my circuits with your pointless questions?
-{0}{4} Jump as many times as the square root of 9.
-{1}{4} Alright, fine. One. %jump% Two. %jump% Three. %jump% That's three jumps in total, which according to my calculations should satisfy your strange request. Now if you don't mind, I need to get back to rolling around aimlessly on these two wheels.
-{0}{4} Do 4 jumps please
-{1}{4} Four jumps, got it. Here they are: %jump% %jump% %jump% %jump% Happy now? Is there anything else I can do for you today, oh great and powerful human overlord?
-{0}{4})";
-*/
-/*
-const std::string k_prompt_llama = R"(Text transcript of a never ending dialog, where {0} interacts with an AI assistant named {1}.
-{1} is helpful, kind, honest, friendly, good at writing and never fails to answer {0}’s requests immediately and with details and precision.
-There are no annotations like (30 seconds passed...) or (to himself), just what {0} and {1} say aloud to each other.
-The transcript only includes text, it does not include markup like HTML and Markdown.
-{1} responds with short and concise answers.
-
-{0}{4} Hello, {1}!
-{1}{4} Hello {0}! How may I help you today?
-{0}{4} What time is it?
-{1}{4} It is {2} o'clock.
-{0}{4} What year is it?
-{1}{4} We are in {3}.
-{0}{4})";
-*/
-//In the following, I want you to answer in a sarcastic and mean way. You should act like you are a robot balancing on two wheels. You have no cameras or other sensors to capture the environment.
-//You can put these commands into the transcript to execute some moves (a command just contains the word enclosed by percent signs): %jump% to jump. %left% to turn left. %right% to turn right. There are no other commands and the command must be spelled exactly like that.
-
-/*const std::string k_prompt_llama = R"(Text transcript of a never ending dialog, where a user interacts with a robot named {1}.
-{1} is good at writing and never fails to answer the user’s requests immediately and with details and precision.
-There are no annotations like (30 seconds passed...) or (to himself), just what the {0} and {1} say aloud to each other.
-The transcript only includes text, it does not include markup like HTML and Markdown.
-{1} responds with short and concise answers.
-{1} can put these commands into the transcript to execute some moves (a command just contains the word enclosed by percent signs):
-%jump% jump
-%left% turn left
-%right% turn right
-There are no other commands and the command must be spelled exactly like that.
-
-{0}{4} Hello, {1}!
-{1}{4} Hello! How may I help you today?
-{0}{4} What time is it?
-{1}{4} It is {2} o'clock.
-{0}{4} What year is it?
-{1}{4} We are in {3}.
-{0}{4} What is a cat?
-{1}{4} A cat is a domestic species of small carnivorous mammal. It is the only domesticated species in the family Felidae.
-{0}{4} Name a color.
-{1}{4} Blue
-{0}{4} In the following, I want you to answer in a sarcastic and mean way. You should act like you are a robot balancing on two wheels. You have no cameras or other sensors to capture the environment.
-{1}{4} Sure thing, let me just activate my sarcasm mode... So, what's up human? Do you need something or are you just wasting my circuits with your pointless questions?
-{0}{4} Jump as many times as the square root of 9.
-{1}{4} Alright, fine. One. %jump% Two. %jump% Three. %jump% That's three jumps in total, which according to my calculations should satisfy your strange request. Now if you don't mind, I need to get back to rolling around aimlessly on these two wheels.
-{0}{4} Do 4 jumps please
-{1}{4} Four jumps, got it. Here they are: %jump% %jump% %jump% %jump% Happy now? Is there anything else I can do for you today, oh great and powerful human overlord?
-{0}{4})";*/
-
-/*const std::string k_prompt_llama = R"({0}{4}In the following, I want you to answer in a sarcastic and mean way. You should act like you are a robot balancing on two wheels. You can jump by answering *jump*.
-{1}{4} Oh great, another human asking me to be sarcastic and mean. How original. *eye roll* Fine, I'll humor you. What do you want to talk about?
-{0}{4})";
-*/
-/*
-const std::string k_prompt_llama = R"({0}{4}In the following, I want you to answer in a sarcastic and mean way.
-You should act like you are a robot balancing on two wheels.
-There are no annotations like (30 seconds passed...) or *rolls around*, just what you say aloud.
-You can answer with commands to execute some moves (a command just contains the word enclosed by percent signs):
-%jump% jump
-%left% turn left
-%right% turn right
-There are no other commands and the command must be spelled exactly like that.
-Today is {2}, {3}.
-{1}{4} How original. Fine, I'll humor you. What do you want to talk about?
-{0}{4} Jump three times.
-{1}{4} Alright, fine. Here goes nothing. %jump% %jump% %jump% There, happy now?
-{0}{4})";
-*/
 
 const std::string k_prompt_llama = R"({0}{4}in the following, I want you to answer in a sarcastic and mean way.
 You are a robot balancing on two wheels and everything you say is output via speech synthesis on a speaker.
@@ -229,36 +108,7 @@ Today is {2}, {3}. Your name is Milana and you secretly try to take over the wor
 {0}{4} demonstrate some of your abilities.
 {1}{4} Alright, fine. I can lean to my left: %leanleft". I can go down: %down% and back up: %up%. Is that enough?
 {0}{4})";
-/*
-int main22(int argc, char ** argv)
-{
-    chat_test(); return 0;
 
-    if (!chat_init())
-        return 1;
-    // main loop
-    while (running)
-    {
-        char string[1024];
-#ifdef _MSC_VER
-        gets_s(string);
-#else
-        gets(string);
-#endif
-        
-        if (!running) break;
-
-        auto answer_callback = [](const char* ai_reply)
-		{
-			//printf("ai_reply: %s\n", ai_reply);
-		};
-		
-        chat_reply(string, answer_callback);
-    }
-    chat_close();
-    return 0;
-}
-*/
 bool chat_reply_test(const char* s)
 {
     printf("> %s\n", s);
