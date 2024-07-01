@@ -81,7 +81,6 @@ int main(int argc, char *argv[])
 		battery_init();
 		goto fail;
 	}
-	//md.battery_voltage = 23.3f;
 	if (!battery_init())        goto fail;
 	if (!tts_client_init())     goto fail;
 	if (!foot_control_init())   goto fail;
@@ -107,7 +106,6 @@ int main(int argc, char *argv[])
 		if (!leaning_update())        goto fail;
 		if (!ik_update())             goto fail;
 		if (!spi_imu_update())        goto fail;
-		//md.odrive_counter = double(time_micros_64()-start_time2) * .000001 * odrive_frequency;
 		if (!leg_control_update())    goto fail;
 		if (!foot_control_update_1()) goto fail;
 		if (!balance_control_update())goto fail;
