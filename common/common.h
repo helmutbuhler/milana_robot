@@ -363,9 +363,9 @@ struct MonitorData
 };
 
 // ControlData below is mainly used to adjust the value of variables, but it is also used
-// to trigger certain functions in the proxy (like starting encoder z search).
+// to trigger certain functions in the robot (like starting encoder z search).
 // On the control_ui side, this is done by incrementing this trigger variable.
-// On the proxy side, these trigger variables are checked every frame, and when it sees that
+// On the robot side, these trigger variables are checked every frame, and when it sees that
 // the variable increased from the last frame, it triggers the code. This looks something like this:
 // 
 // static int last_reset_leg_sensors = 0;
@@ -376,7 +376,7 @@ struct MonitorData
 // last_reset_leg_sensors = cd.reset_leg_sensors_trigger;
 // 
 // The macro below ensures that the trigger variable in control_ui is initialized to 2. Why is that?
-// Because when the proxy connects for the first time with the client,
+// Because when the robot connects for the first time with the client,
 // the trigger variable on the client (control_ui) may already be 1 (if the trigger was used
 // in a previous connection). If the static variable would be initialized to 0, the trigger would then
 // execute in the first frame the client is connected. Initializing it to 1 doesn't work for a similar reason,
@@ -385,7 +385,7 @@ struct MonitorData
 // control_ui
 #define TRIGGER_VAR(x) int x = 2
 #else
-// proxy
+// robot
 #define TRIGGER_VAR(x) int x = 0
 #endif
 
