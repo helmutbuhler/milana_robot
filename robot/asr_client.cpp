@@ -105,7 +105,10 @@ bool asr_client_update()
 		net_connect_close(connecting);
 		connecting = nullptr;
 		if (client != INVALID_SOCKET)
+		{
 			printf("asr connected.\n");
+			net_set_socket_non_blocking(client);
+		}
 	}
 	md.asr_client_connected = client != INVALID_SOCKET;
 

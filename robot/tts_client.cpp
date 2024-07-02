@@ -68,8 +68,8 @@ bool tts_client_init()
 {
 	if (!playback_init()) return false;
 
-	if (!read_wav("tts/elevatormusic_mono.wav", music_samples, playback_sample_rate)) return false;
-	if (!read_wav("tts/finish.wav", finish_samples, playback_sample_rate)) return false;
+	if (!read_wav("../tts/elevatormusic_mono.wav", music_samples, playback_sample_rate)) return false;
+	if (!read_wav("../tts/finish.wav", finish_samples, playback_sample_rate)) return false;
 	
 	return true;
 }
@@ -204,12 +204,16 @@ bool tts_client_update()
 		{
 			net_connect_close(connecting);
 			connecting = nullptr;
+			if (client != INVALID_SOCKET)
+			{
+				net_set_socket_non_blocking(client);
 #if USE_LOCAL_TTS
-			// When docker opens this port, but the container is not listening, connect()
-			// will somehow succeed. But then the first recv call will fail for some reason.
-			// We catch that here to prevent spamming the console.
-			just_connected = true;
+				// When docker opens this port, but the container is not listening, connect()
+				// will somehow succeed. But then the first recv call will fail for some reason.
+				// We catch that here to prevent spamming the console.
+				just_connected = true;
 #endif
+			}
 		}
 	}
 	md.tts_client_connected = client != INVALID_SOCKET;
