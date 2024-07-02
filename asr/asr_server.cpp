@@ -21,8 +21,8 @@
 // that much GPU memory. Sadly, the Jetson Nano isn't capable of running this.
 
 
-// Optionally write the audio stream to a file.
-#define WRITE_TO_FILE 1
+// Optionally write the audio stream to a wav file.
+#define WRITE_TO_FILE 0
 
 // Optionally read audio from a file, instead of receiving it from the client.
 #define DO_INPUT_WAV 0

@@ -63,7 +63,7 @@ Clone this repository on your Jetson Nano, cd into it and do this:
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-make
+make robot
 ```
 If you get errors involving ASR and Cuda, comment that project out of the `CMakeLists.txt` file. We don't need the ASR Server on the Jetson Nano.
 
