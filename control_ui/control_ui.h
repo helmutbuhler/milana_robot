@@ -8,6 +8,8 @@ struct MonitorDataEx : MonitorData
 {
 	// Some additional variables for simulation and visualization stuff.
 	// This is not used on the robot, only in control ui.
+	bool balance_control_is_quiet = false;
+	
 	float coi_world_pos_sim = 0;
 	float coi_world_vel_sim = 0;
 	float coi_world_acc_sim = 0;

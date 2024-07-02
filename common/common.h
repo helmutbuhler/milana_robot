@@ -90,6 +90,7 @@ static_assert(sizeof(time_t) == 8, "");
 // Unused variables are marked as such and cannot be removed for the same reason.
 struct MonitorData
 {
+	int monitor_data_version = 33;
 	int counter = 0; // Increased once per frame on robot (around 60Hz, see target_delta_time_ms)
 
 	// timing
@@ -105,6 +106,11 @@ struct MonitorData
 	u32_micros delta_time_servo = 0;
 	u32_micros delta_time_foot_control_1 = 0;
 	u32_micros delta_time_foot_control_2 = 0;
+	u32_micros delta_time_tts = 0;
+	u32_micros delta_time_asr = 0;
+	u32_micros delta_time_ik = 0;
+	u64 uptime_jetson_micros = 0;
+	time_t local_time = 0;
 
 	// battery
 	float battery_total_voltage = 0;
@@ -119,6 +125,15 @@ struct MonitorData
 	float imu_temperature = 0;
 	float odrv_foot_temperature = 0;
 
+	// other statistics
+	float cpu_usage[4] = {-1,-1,-1,-1};
+	int ram_avail_kb = -1;
+	int swap_avail_kb = -1;
+	float leg_control_bus_current = 0;
+	float foot_control_bus_current = 0;
+	int leg_control_endpoint_request_count = 0;
+	int foot_control_endpoint_request_count = 0;
+
 	// leg control:
 	// all "angles" here are in revolutions of the small gear
 	// 0: right  1: left
@@ -130,6 +145,7 @@ struct MonitorData
 	float leg_encoder_error_rate[2] = {0};
 	bool leg_error_flag[2] = {false, false};
 	float leg_vel[2] = {0};  // velocity, revolutions per second,
+	float leg_vel_target_odrv[2] = {0};
 	float leg_integrator[2] = {0}; // vel_integrator_torque
 	float leg_current[2] = {0};
 	float leg_current_target[2] = {0};
@@ -148,7 +164,6 @@ struct MonitorData
 	
 	// positioning
 	float avg_error_p = 0;
-	bool positioning_right_phase_ = false; // unused
 
 	// jumping
 	JumpPhase jump_phase = JP_None;
@@ -159,8 +174,12 @@ struct MonitorData
 	bool force_stay_in_falling_mode = false;
 
 	// landing
-	bool activated_landing_[2] = {0, 0}; // unused
 	float post_landing_timer = 1;
+	float l_base_angle = 0;
+	float l_frame_counter[2] = {0};
+	
+	// stand control
+	float common_leg_vel_target = 0;
 
 	// side balancing
 	float post_ramp_timer = 1;
@@ -183,6 +202,11 @@ struct MonitorData
 	float foot_set_current_lim[2] = {0, 0};
 	bool foot_motor_ready[2] = {false, false}; // has the z-index been found yet?
 	//int foot_count_in_cpr[2] = {0, 0};
+	float foot_acc = 0; // in g-force
+	int foot_shadow_count[2] = {0, 0};
+	bool foot_control_limit_accel = false;
+	int foot_sensor_index_error[2] = {0};
+	int foot_sensor_index_count[2] = {0};
 
 	// hip
 	float common_hip_pos_target = 0.75f;
@@ -199,6 +223,9 @@ struct MonitorData
 	float hip_sensor_pos_base[2] = {0};
 	float hip_sensor_pos[2] = {0};
 	float hip_sensor_vel[2] = {0};
+	int hip_sensor_index_error[2] = {0};
+	int hip_sensor_index_count[2] = {0};
+	bool hip_sensor_index_enabled = false;
 
 	// imu
 	float imu_x_angle = 0;
@@ -230,20 +257,38 @@ struct MonitorData
 	float imu_fifo_gyro_y[imu_fifo_gyro_max_count] = {0};
 	float imu_fifo_gyro_z[imu_fifo_gyro_max_count] = {0};
 
+	// Measured imu acceleration, with body acceleration subtracted:
+	float imu_gravity_acc_x_comp = 0;
+	float imu_gravity_acc_y_comp = 0;
+	float imu_gravity_acc_z_comp = 0;
+	float imu_sensor_to_floor_pos_x = 0; // x is forward direction
+	float imu_sensor_to_floor_pos_y = 0; // y is side direction
+	float imu_sensor_to_floor_vel_x = 0;
+	float imu_sensor_to_floor_vel_y = 0;
+	float imu_sensor_to_floor_acc_x = 0; // in g-force
+	float imu_sensor_to_floor_acc_y = 0; // in g-force
+	float coi_world_pos = 0; // center of inertia in forward direction in world
+	float coi_world_vel = 0;
+	float coi_world_acc = 0; // in g-force
+	float t_correction_angle_raw = 0;
+	float coi_theta_acc = 0; // in g-force
+
+	float imu_temp_gyro_x = 0;
+	float imu_temp_gyro_y = 0;
+	float imu_temp_gyro_z = 0;
+
 	// balance control
 	float error_p = 0; // pid error
 	float error_d = 0;
 	float vel_p = 0; // pid contributions to balance_control_vel_output
+	float vel_d = 0;
 	float vel_pos = 0;
 	float balance_control_integrator = 0;
 	float vel_backcalculation = 0;
 	float balance_control_standing_action_tolerance_timer = 0;
 	float t_correction_angle = 0;
-	float balance_control_body_action_ = 0; // unused
-	float balance_control_body_action_delta_ = 0; // unused
 	bool is_standing = false;
-	float balance_control_pos_user_ = 0; // unused
-	float balance_control_pos_output_ = 0; // unused
+	bool balance_control_force_still = false;
 	float balance_control_vel_output = 0; // target velocity
 	float balance_control_vel_output_smooth = 0;
 	float balance_control_vel_user = 0;
@@ -257,109 +302,61 @@ struct MonitorData
 	float balance_control_delta_pos_r = 0;
 	float balance_control_delta_vel_l = 0;
 	float balance_control_delta_vel_r = 0;
-	
-	// startup
-	StartupSequence startup_sequence = SS_None;
-	float startup_sequence_timer = 0;
-
-	// to be ordered:
-	bool balance_control_force_still = false;
-	int monitor_data_version = 31;
 	float balance_control_gain_p = 0;
 	float balance_control_gain_i = 0;
 	float balance_control_gain_vel_high = 0;
 	float balance_control_gain_backcalculation = 0;
-	float foot_acc = 0; // in g-force
-	// Measured imu acceleration, with body acceleration subtracted:
-	float imu_gravity_acc_x_comp = 0;
-	float imu_gravity_acc_y_comp = 0;
-	float imu_gravity_acc_z_comp = 0;
-	float imu_sensor_to_floor_pos_x = 0; // x is forward direction
-	float imu_sensor_to_floor_pos_y = 0; // y is side direction
-	float imu_sensor_to_floor_vel_x = 0;
-	float imu_sensor_to_floor_vel_y = 0;
-	float imu_sensor_to_floor_acc_x = 0; // in g-force
-	float imu_sensor_to_floor_acc_y = 0; // in g-force
-	float vel_d;
 	float balance_control_gain_d = 0;
 	float balance_control_gain_vel_low = 0;
 	float balance_control_squat_length = 0;
-	float common_leg_vel_target = 0;
-	int hip_sensor_index_error[2] = {0};
-	int hip_sensor_index_count[2] = {0};
-	u64 uptime_jetson_micros = 0;
-	time_t local_time = 0;
-	bool balance_control_is_quiet = false;
 	float balance_control_target_angle = 0;
 	float balance_control_target_angle_vel = 0;
-	float leg_control_bus_current = 0;
-	float foot_control_bus_current = 0;
-	float l_base_angle = 0;
-	float leg_vel_target_odrv[2] = {0};
-	int leg_control_endpoint_request_count = 0;
-	int foot_control_endpoint_request_count = 0;
-	float l_frame_counter[2] = {0};
+	float balance_control_world_angle = 0;
+	float balance_control_position_control_target = 0;
+
+	// IK / Arms
 	float leg_pos_target_ik[2] = {0};
 	float hip_pos_target_ik[2] = {0};
-	float joystick_input_timer = 0;
-	float leaning_target_angle_joystick = 0;
-	float leaning_target_angle = 0;
-	float leaning_target_angle_smooth = 0;
-	float leaning_optimized_target_angle = 0;
-	float leaning_min_rotation_vel = -1000;
-	float leaning_max_rotation_vel = 1000;
-	float balance_control_world_angle = 0;
-	float cpu_usage[4] = {-1,-1,-1,-1};
-	int ram_avail_kb = -1;
-	int swap_avail_kb = -1;
-	bool foot_control_limit_accel = false;
-	bool tts_client_connected = false;
-	bool asr_client_connected = false;
-	float speech_service_ping_timer_ = 2; // unused
-	u32_micros delta_time_tts = 0;
-	u32_micros delta_time_asr = 0;
-	bool tts_calculating = false;
-	bool tts_playback = false;
-
-	int command_running = -1;
-	float command_timer = 0;
-
 	float ik_x_delta_target = 0;
 	float ik_x_delta = 0;
 	//float ik_x_delta_realized = 0;
-	float balance_control_position_control_target = 0;
 	float ik_l_arm_a = to_rad(40), ik_l_arm_b = 0, ik_l_arm_c = 0;
 	float ik_r_arm_a = to_rad(40), ik_r_arm_b = 0, ik_r_arm_c = 0;
 	float ik_arm_target_x = 180, ik_arm_target_y = 80, ik_arm_target_z = -140;
 
 	float arm_pos_target[num_arm_servos] = {0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f};
 	float arm_pos_target_smooth[num_arm_servos] = {0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f};
-	u32_micros delta_time_ik = 0;
 	bool ik_enable_arm_mode = false;
-
-	bool hip_sensor_index_enabled = false;
-
-	float imu_temp_gyro_x = 0;
-	float imu_temp_gyro_y = 0;
-	float imu_temp_gyro_z = 0;
-
-	int foot_sensor_index_error[2] = {0};
-	int foot_sensor_index_count[2] = {0};
-
 	int ik_winking_phase = 0;
-
-	float coi_world_pos = 0; // center of inertia in forward direction in world
-	float coi_world_vel = 0;
-	float coi_world_acc = 0; // in g-force
-	float t_correction_angle_raw = 0;
-	float coi_theta_acc = 0; // in g-force
 	
-	int foot_shadow_count[2] = {0, 0};
+	// startup
+	StartupSequence startup_sequence = SS_None;
+	float startup_sequence_timer = 0;
 
+	// commands
+	int command_running = -1;
+	float command_timer = 0;
+	int command_queue_size = 0;
+
+	// tts/asr
+	bool tts_client_connected = false;
+	bool asr_client_connected = false;
+	bool tts_calculating = false;
+	bool tts_playback = false;
 	bool tts_recv_audio = false;
 	bool asr_recv_text = false;
 	int tts_queue_size = 0;
-	int command_queue_size = 0;
+
+	// joystick
+	float joystick_input_timer = 0;
+	float leaning_target_angle_joystick = 0;
+
+	// leaning
+	float leaning_target_angle = 0;
+	float leaning_target_angle_smooth = 0;
+	float leaning_optimized_target_angle = 0;
+	float leaning_min_rotation_vel = -1000;
+	float leaning_max_rotation_vel = 1000;
 };
 
 // ControlData below is mainly used to adjust the value of variables, but it is also used
