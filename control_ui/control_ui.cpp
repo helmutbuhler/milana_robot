@@ -2933,7 +2933,7 @@ void draw_ui()
 		1.0 / odrive_frequency);
 
 
-	float monitor_height = 150*dpi_scaling;
+	float monitor_height = 160*dpi_scaling;
 	float sidebar_width = 350*dpi_scaling;
 	
 	draw_ui_monitoring(monitor_height, sidebar_width);
@@ -3152,7 +3152,7 @@ int main(int argc, char** argv)
 
 	glfwWindowHint(GLFW_VISIBLE, 0);
 	glfwWindowHint(GLFW_MAXIMIZED, 1);
-    window = glfwCreateWindow(1280, 720, "BalanceBot Controller", nullptr, nullptr);
+    window = glfwCreateWindow(1280, 720, "Milana Robot Control UI", nullptr, nullptr);
     glfwMakeContextCurrent(window);
     glfwSwapInterval(0); // Disable vsync
 
