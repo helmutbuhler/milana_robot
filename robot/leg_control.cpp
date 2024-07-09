@@ -240,6 +240,11 @@ bool leg_control_init()
 {
 	if (!odrive.connect_uart("/dev/ttyTHS1", odrive_uart_baudrate, odrive_uart_stop_bits_2)) return false;
 	//if (!odrive.connect_usb()) return false;
+	if (!odrive.odrive_fw_is_milana)
+	{
+		printf("Wrong firmware on Leg ODrive\n");
+		return false;
+	}
 	
 	axis0 = &odrive.root("axis0");
 	axis1 = &odrive.root("axis1");

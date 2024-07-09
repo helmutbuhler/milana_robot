@@ -96,6 +96,11 @@ bool foot_control_init()
 {
 	if (!odrv_foot.connect_uart("/dev/ttyS0", odrive_uart_baudrate, odrive_uart_stop_bits_2)) return false;
 	//if (!odrv_foot.connect_usb()) return false;
+	if (!odrv_foot.odrive_fw_is_milana)
+	{
+		printf("Wrong firmware on Foot ODrive\n");
+		return false;
+	}
 
 	// Clear potential watchdog errors from previous runs
 	odrv_foot.root("axis0")("config")("enable_watchdog").set(false);
