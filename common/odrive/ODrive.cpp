@@ -405,7 +405,7 @@ void ODrive::endpoint_request(int endpoint_id,
 	u32_micros start_time = time_micros();
 	while (true)
 	{
-		if (time_micros() - start_time > 500000)
+		if (time_micros() - start_time > 1000000)
 		{
 			communication_error = true;
 			received_payload.clear();
@@ -556,6 +556,7 @@ void ODrive::call(int id)
 
 void ODrive::call(int id, int in1, float* out1)
 {
+	*out1 = 0;
 	{
 		// param1
 		serial_buffer send_payload;
@@ -574,12 +575,14 @@ void ODrive::call(int id, int in1, float* out1)
 		serial_buffer send_payload;
 		serial_buffer receive_payload;
 		endpoint_request(id+2, receive_payload, send_payload, true, sizeof(*out1));
+		if (communication_error) return;
 		auto it = get_it(receive_payload);
 		deserialize(it, *out1);
 	}
 }
 void ODrive::call(int id, int in1, u64* out1)
 {
+	*out1 = 0;
 	{
 		// param1
 		serial_buffer send_payload;
@@ -598,6 +601,7 @@ void ODrive::call(int id, int in1, u64* out1)
 		serial_buffer send_payload;
 		serial_buffer receive_payload;
 		endpoint_request(id+2, receive_payload, send_payload, true, sizeof(*out1));
+		if (communication_error) return;
 		auto it = get_it(receive_payload);
 		deserialize(it, *out1);
 	}
@@ -605,6 +609,7 @@ void ODrive::call(int id, int in1, u64* out1)
 
 void ODrive::call(int id, bool* out1)
 {
+	*out1 = 0;
 	{
 		// call
 		serial_buffer send_payload;
@@ -616,6 +621,7 @@ void ODrive::call(int id, bool* out1)
 		serial_buffer send_payload;
 		serial_buffer receive_payload;
 		endpoint_request(id+1, receive_payload, send_payload, true, sizeof(*out1));
+		if (communication_error) return;
 		auto it = get_it(receive_payload);
 		deserialize(it, *out1);
 	}
