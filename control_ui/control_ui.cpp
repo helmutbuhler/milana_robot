@@ -2749,6 +2749,8 @@ void draw_ui_sidebar(float monitor_height, float sidebar_width,
 		{
 			if (ImGui::Button("start capturing"))
 				webcam_start_capture("Stereo Vision 1");
+			if (client_get_connection_state() != 2 && ImGui::IsItemHovered())
+				ImGui::SetTooltip("The robot needs to be connected for this to work");
 		}
 
 		ImGui::DragScalar("user time delta", ImGuiDataType_S64, &webcam_time_delta, 0.001f/webcam_time_to_seconds);
@@ -3270,10 +3272,10 @@ void draw_robot_3d_views(const RobotJointState& s, const RobotIKTarget* target,
 
 	for (int i = 0; i < 4; i++)
 	{
-		int view_port_x = (int)ui_x_pos + (show_big_3d_view ? -100+250*i : 260+150*i);
-		int view_port_y = window_size_y - (int)ui_y_pos - (show_big_3d_view ? 770 : 390);
-		int view_port_cx = 500;
-		int view_port_cy = 500;
+		int view_port_x = (int)(ui_x_pos + (show_big_3d_view ? -100+250*i : 200+120*i)*dpi_scaling);
+		int view_port_y = window_size_y - (int)(ui_y_pos + (show_big_3d_view ? 560 : 310)*dpi_scaling);
+		int view_port_cx = (int)(400*dpi_scaling);
+		int view_port_cy = (int)(400*dpi_scaling);
 		glViewport(view_port_x, view_port_y, view_port_cx, view_port_cy);
 
 		/*glEnable(GL_SCISSOR_TEST);
