@@ -70,7 +70,7 @@ bool calibration_leg_done[2];
 float calibration_leg_pos[2];
 float calibration_leg_rel_pos_max[2];
 
-bool zombie_mode = false;//todo: test this!
+bool zombie_mode = false;
 float zombie_mode_timer;
 
 inline uint as_uint(const float x) {
@@ -99,6 +99,8 @@ static bool check_errors(Endpoint& root, bool init)
 		return false;
 	}
 
+	int num_errors = 0;
+
 	if (md.startup_sequence != SS_LegCalibration1a && md.startup_sequence != SS_LegCalibration1b &&
 		(motor_running[0] || motor_running[1]))
 	{
@@ -110,7 +112,7 @@ static bool check_errors(Endpoint& root, bool init)
 			// It is physically impossible to reach these positions
 			// so if it happens an encoder is probably defect and we fail here.
 			printf("ODrive Leg position out of range: %f %f\n", abs_pos0, abs_pos1);
-			return false;
+			num_errors++;
 		}
 	}
 
@@ -124,11 +126,10 @@ static bool check_errors(Endpoint& root, bool init)
 
 	bool any_errors = true;
 	root("any_errors_and_watchdog_feed").get(any_errors);
-	if (!any_errors)
+	if (!any_errors && num_errors == 0)
 		return true;
 
 	printf("\nleg odrive error!\n");
-	int num_errors = 0;
 	int error; root("can")("error").get(error); if (error) { printf("odrive: can error: %d\n", error); num_errors++; }
 	check_axis_errors(axis0, "axis0", num_errors);
 	check_axis_errors(axis1, "axis1", num_errors);
