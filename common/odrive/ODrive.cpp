@@ -391,6 +391,11 @@ void ODrive::endpoint_request(int endpoint_id,
 		return;
 	endpoint_request_counter++;
 
+	// ODrive somehow sometimes sends corrupt data when the baudrate is about 921600 and ack is set to false,
+	// even if we don't read the response.
+	// Setting it to true fixes this completely.
+	ack = true;
+
 	if (ack)
 		endpoint_id |= 0x8000;
 
