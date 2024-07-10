@@ -219,7 +219,7 @@ void on_new_monitor_data(MonitorData& md)
 		{
 			// #osci
 			float value = md.oscilloscope_transmitting[i-md.oscilloscope_start];
-			const int oscilloscope_values_per_step = 10;
+			const int oscilloscope_values_per_step = 8;
 			int h = oscilloscope_history_start+i/oscilloscope_values_per_step;
 			switch (i%oscilloscope_values_per_step)
 			{
@@ -229,8 +229,8 @@ void on_new_monitor_data(MonitorData& md)
 			case 1: history[h].leg_rel_angle[1]             = value; break;
 			case 2: history[h].leg_current_target[0]        = value; break;
 			case 3: history[h].leg_current_target[1]        = value; break;
-			//case 4: history[h].leg_current[0]               = value; break;
-			//case 5: history[h].leg_current[1]               = value; break;
+			//case 2: history[h].leg_current[0]               = value; break;
+			//case 3: history[h].leg_current[1]               = value; break;
 			//case 4: history[h].leg_rel_angle_target_odrv[0] = value; break;
 			//case 5: history[h].leg_rel_angle_target_odrv[1] = value; break;
 			case 4: history[h].leg_vel[0]                   = value; break;
@@ -245,8 +245,8 @@ void on_new_monitor_data(MonitorData& md)
 			//case 9: history[h].average_leg_pos_force_odrv   = value; break;
 			case 6: history[h].leg_vel_target_odrv[0]       = value; break;
 			case 7: history[h].leg_vel_target_odrv[1]       = value; break;
-			case 8: history[h].l_frame_counter[0]           = value; break;
-			case 9: history[h].l_frame_counter[1]           = value; break;
+			//case 8: history[h].l_frame_counter[0]           = value; break;
+			//case 9: history[h].l_frame_counter[1]           = value; break;
 			}
 		}
 	}
@@ -402,12 +402,6 @@ void load_history(const char* filename, bool ignore_non_jumps = false)
 		if (r == 0)
 			break;
 		assert(r == 1);
-		if (version == 1 && len <= 1144)
-		{
-			// This is set to garbage data in older logs
-			md.monitor_data_version = 0;
-		}
-		assert(md.monitor_data_version >= 0);
 		if (md.jump_phase != JP_None)
 			jump_timer = md.odrive_counter;
 		//printf("frame %d %d %d %f\n", (int)(md.jump_phase != JP_None), md.odrive_counter, jump_timer, md.display_time / 8000.0f);
