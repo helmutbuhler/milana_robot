@@ -25,7 +25,7 @@ More details about them is in the comments in the source.
 The application has a main loop that runs at about 60Hz and updates all the components in each iteration. It's defined in `main.cpp`. You will notice there that all the components are very independent of each other. It's easy to disable them individually. This is very helpful for testing things. Initially you will want to comment them all out, except for the server, and test network connection with Control UI. After that works you can uncomment them step by step.
 
 ## Jetson Nano Configuration
-You need to install the custom [Milana Image](todo) on your Jetson Nano so that both UART ports work (we need those to communicate with the ODrives). It's also required to make the SPI and I2C ports more reliable. Detailed instructions on how to install it are there.
+You need to install the custom [Milana Image](https://github.com/helmutbuhler/jetson_nano_image_milana) on your Jetson Nano so that both UART ports work (we need those to communicate with the ODrives). It's also required to make the SPI and I2C ports more reliable. Detailed instructions on how to install it are there.
 
 Once you have that installed and established SSH via a WIFI connection, we need to configure it a bit more:
 

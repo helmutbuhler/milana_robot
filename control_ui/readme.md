@@ -13,7 +13,7 @@ It can also be used to load capture data that was saved to a file earlier.
 
 Note that the robot can also work when control_ui is not connected to it.
 
-[Here](todo) is a repository with a trimmed down version of this application. This might be a better starting point for new projects.
+[Here](https://github.com/helmutbuhler/odrive_control_ui) is a repository with a trimmed down version of this application. This might be a better starting point for new projects.
 
 ## Build
 ### Windows

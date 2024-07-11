@@ -1,6 +1,6 @@
 # ODrive
 ## Overview
-This robot uses two ODrives to control the 4 BLDC Motors that control the feet and leg motors. Some modifications were required to the Firmware, which you can find [here](todo). Clone that repository into the user home folder on the Jetson and flash the Firmware onto the ODrives (instructions are there).
+This robot uses two ODrives to control the 4 BLDC Motors that control the feet and leg motors. Some modifications were required to the Firmware, which you can find [here](https://github.com/helmutbuhler/odrive_milana). Clone that repository into the user home folder on the Jetson and flash the Firmware onto the ODrives (instructions are there).
 
 The ODrive connected to the leg motors is located in the front of the robot (opposite of batteries). To connect to it with ODrivetool via UART, use this:
 ```
@@ -18,11 +18,13 @@ To connect to an ODrive via USB, use this:
 ```
 python3 ~/odrive_milana/tools/odrivetool
 ```
-After flashing the ODrive, you first need to configure them via USB before you can access them with UART. In the following are the commands to initialize them with ODriveTool:
+After flashing the ODrive, you first need to configure them via USB before you can access them with UART. The robot body has holes on its sides where the usb ports on the ODrives are. So you can flash them without taking the robot apart.
+
+In the following are the commands to initialize them with ODriveTool:
 
 
 ## Leg ODrive Initialization
-Note: The requested_state assignment in the bottom will start motor calibration. Make sure the motors are free to rotate for that.
+Note: The requested_state assignment in the bottom will start motor calibration. Make sure the motors are free to rotate for that. The gears on the leg motors are designed in such a way that the motor becomes free when you rotate the leg all the way back. This way you don't have to detach the lower legs to calibrate the motors.
 ```
 odrv0.erase_configuration()
 odrv0.config.uart_baudrate = 921600
@@ -55,6 +57,10 @@ odrv0.axis1.encoder.config.ignore_abs_ams_error_flag = True
 
 odrv0.axis0.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE
 odrv0.axis1.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE
+
+# Make sure no errors occured:
+dump_errors(odrv0, True)
+
 odrv0.axis0.encoder.config.pre_calibrated = True
 odrv0.axis1.encoder.config.pre_calibrated = True
 
@@ -97,6 +103,10 @@ odrv0.axis1.config.calibration_lockin.accel = 20
 
 odrv0.axis0.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE
 odrv0.axis1.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE
+
+# Make sure no errors occured:
+dump_errors(odrv0, True)
+
 odrv0.axis0.encoder.config.pre_calibrated = True
 odrv0.axis1.encoder.config.pre_calibrated = True
 
@@ -161,4 +171,4 @@ get_anticogging_map(odrv0.axis1, 'anticogging_map_1.csv')
 ```
 
 To check if the Anticogging is working, you can enable a constant slow speed in `control_ui` and plot the position. You can also enable/disable Anticogging there with a checkbox.
-This Anticogging Calibration need to be done only once because the feet have absolute encoders. If you notice that it's not working anymore after some time, or after a jump, you likely have encoder slippage.
+This Anticogging Calibration needs to be done only once because the feet have absolute encoders. If you notice that it's not working anymore after some time, or after a jump, you likely have encoder slippage.

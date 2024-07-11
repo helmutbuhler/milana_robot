@@ -55,7 +55,7 @@ python Inference_LJSpeech_Server
 
 Running [Coqui TTS](https://github.com/coqui-ai/TTS.git) on the Jetson Nano is a bit difficult: The Ubuntu version on the Jetson Nano only supports Python 3.6, which means that we need to use an older version of Coqui TTS. Also installing Pytorch (which Coqui TTS needs) is basically impossible without a Docker Container.
 
-I forked the version of Coqui TTS that still works with Python 3.6 [here](todo). It also includes some bugfixes. Clone it into `tts/coqui_tts`.
+I forked the version of Coqui TTS that still works with Python 3.6 [here](https://github.com/helmutbuhler/TTS). It also includes some bugfixes. Clone it into `tts/coqui_tts`.
 
 To create the Docker container, run:
 ```
