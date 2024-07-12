@@ -1,4 +1,5 @@
 # Control UI
+[Control UI demo](https://github.com/user-attachments/assets/ef9a0bbf-39a2-4dd6-9c05-335df541d1d5)
 
 ## Overview
 control_ui is an application that connects to the robot via WIFI and gives you a lot of features:
@@ -15,6 +16,8 @@ It can also be used to load capture data that was saved to a file earlier.
 Note that the robot can also work when control_ui is not connected to it.
 
 [ODrive Control UI](https://github.com/helmutbuhler/odrive_control_ui) is a repository with a trimmed down version of this application. This might be a better starting point for new projects.
+
+The video above shows the application in action while the robot jumps. The ODrive oscilloscope is used there to retrieve precise position data of the motors that trigger the jump. You can also see the different jump states in the plot there. The plotting data of that run is in this repository, in case you want to take a look yourself.
 
 ## Build
 ### Windows
