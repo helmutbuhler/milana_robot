@@ -24,7 +24,7 @@ The robot can be controlled externally using various methods:
  - balance on its wheels while driving and changing its body posture.
  - move its "knees" so fast that it will jump a few centimeters.
  - control each arm with 3 degrees of freedom and pick up light objects with them.
- - move up to todo km/h.
+ - move up to about 10 km/h.
  - keep balance while moving with one wheel on a small ramp.
 
 ## Code
