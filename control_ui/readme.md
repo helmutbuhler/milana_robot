@@ -1,5 +1,6 @@
-# Overview
+# Control UI
 
+## Overview
 control_ui is an application that connects to the robot via WIFI and gives you a lot of features:
 - Control the robot via keyboard (arrow keys to move, P, L, O, K to move joints)
 - Monitor about 300 variables received by the robot. Displayed as plots.
@@ -13,7 +14,7 @@ It can also be used to load capture data that was saved to a file earlier.
 
 Note that the robot can also work when control_ui is not connected to it.
 
-[Here](https://github.com/helmutbuhler/odrive_control_ui) is a repository with a trimmed down version of this application. This might be a better starting point for new projects.
+[ODrive Control UI](https://github.com/helmutbuhler/odrive_control_ui) is a repository with a trimmed down version of this application. This might be a better starting point for new projects.
 
 ## Build
 ### Windows
