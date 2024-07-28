@@ -62,7 +62,7 @@ You can see that the initial graph looks very similar, with and without Backcalc
 On the hardware side, I didn't always find one of those: The encoders, the devices that measure the angle of the joints, need to be very accurate so that the motor controller can work. Unfortunately, the strong acceleration while jumping and landing caused the internal structure of these encoders to slip along the axis. I found a solution involving glue and burning plastic with a soldering iron, but it wasn't pretty. EM Noise also was a serious issue. Due to the heavy current the motors require while jumping and the close space due to the robots small size, I had lots of Heisenbugs and data corruption problems. I got them down pretty good by hacking some of the Linux kernel, the ODrive firmware and using insulated wiring, but I'm still not super happy with it.
 
 In the end, I got the jumping to work pretty reliably. It doesn't jump as high as I initially simulated it or hoped, but I guess that's good enough.
-![Jump Simulation and real Jump GIF](https://8gadgetpack.net/milana/sim5.gif)
+![Jump Simulation and real Jump GIF](https://8gadgetpack.net/milana/sim5.webp)
 
 I also implemented other features than jumping. It can balance while moving with one leg on a ramp. I added some arms with some Inverse Kinematics control. And I also added a way to communicate with the robot via voice and a local ChatGPT clone (see [here](https://www.youtube.com/watch?v=1e_AJBxF1MY)). But this post is getting long enough, so I just refer to the code and readmes in this repository and this [Youtube Video](https://www.youtube.com/watch?v=lOAjTAtRaGs).
 
