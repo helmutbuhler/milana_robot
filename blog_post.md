@@ -64,9 +64,7 @@ On the hardware side, I didn't always find one of those: The encoders, the devic
 In the end, I got the jumping to work pretty reliably. It doesn't jump as high as I initially simulated it or hoped, but I guess that's good enough.
 ![Jump Simulation and real Jump GIF](https://8gadgetpack.net/milana/sim5.gif)
 
-I also implemented other features than jumping. It can balance while moving with one leg on a ramp. I added some arms with some Inverse Kinematics control. And I also added a way to communicate with the robot via voice and a local ChatGPT clone. But this post is getting long enough, so I just refer to the code and readmes in this repository and this Youtube Video:
-
-todo
+I also implemented other features than jumping. It can balance while moving with one leg on a ramp. I added some arms with some Inverse Kinematics control. And I also added a way to communicate with the robot via voice and a local ChatGPT clone (see [here](https://www.youtube.com/watch?v=1e_AJBxF1MY)). But this post is getting long enough, so I just refer to the code and readmes in this repository and this [Youtube Video](https://www.youtube.com/watch?v=lOAjTAtRaGs).
 
 All in all, I believe it's fair to say that this robot is very similar feature wise with Boston Dynamics Handle Robot. Although I admit that it doesn't look as fancy and isn't quite as elegant, but I'm still quite happy with it.
 

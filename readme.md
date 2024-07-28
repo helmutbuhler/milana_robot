@@ -1,4 +1,7 @@
 # Milana - A Two-Wheeled Jumping Robot
+
+![Milana](images/milana.png)
+
 ## Overview
 Milana is a small and relatively cheap robot on two wheels. It has 6 motors on each side:
  - A BDC 280KV motor controlling the wheel.
@@ -6,7 +9,7 @@ Milana is a small and relatively cheap robot on two wheels. It has 6 motors on e
  - A 35kg servo motor controlling the hip.
  - 3 1.5kg small servo motors, controlling the arm.
 
-The brushless motors are controlled with two [ODrives](https://odriverobotics.com/), each with custom firmware to enable some of the tricks demonstrated in the [video](todo). All motors, except for the arm motors, also have precise encoders attached.
+The brushless motors are controlled with two [ODrives](https://odriverobotics.com/), each with custom firmware to enable some of the tricks demonstrated in the [video](https://www.youtube.com/watch?v=lOAjTAtRaGs). All motors, except for the arm motors, also have precise encoders attached.
 The robot is powered by two 3Ah 3S Lipo batteries and controlled by a Jetson Nano. The Jetson Nano is running custom control software on Ubuntu with a slightly modified Linux kernel. Beside the ODrives, the Jetson Nano is connected to the following:
  - IMU sensor for 3D Orientation.
  - Servo Driver to control all servo motors.
@@ -17,7 +20,7 @@ The robot is powered by two 3Ah 3S Lipo batteries and controlled by a Jetson Nan
 The robot can be controlled externally using various methods:
  - With custom software (Control UI), running on a separate computer and connected via Wifi. This can also be used to tune and calibrate internal parameters, debug issues and simulate certain parts of the robot.
  - With a wireless XBox controller.
- - With speech recognition and a LLM. The robot can reply using speech synthesis and execute a number of commands.
+ - With speech recognition and a [LLM](https://www.youtube.com/watch?v=1e_AJBxF1MY). The robot can reply using speech synthesis and execute a number of commands.
 
  ## Abilities
  The robot can...
