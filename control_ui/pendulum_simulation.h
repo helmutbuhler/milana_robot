@@ -8,7 +8,7 @@
 // I derived the code for the update function using the euler lagrangian method and did so
 // using jupyter notebook with sympy for automatic differentiation. (Sympy offers similar features
 // as MatLab and is free). I basically just had to provide functions for kinetic and potential energy
-// and the rest is calculated by simpy.
+// and the rest is calculated by simpy. See in the extras folder for those notebooks.
 // The resulting simulation matches the real robot very well and works with relatively large timesteps.
 // It's also pretty fast (much faster than realtime).
 #pragma once
