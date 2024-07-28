@@ -32,11 +32,7 @@ Well, once fully assembled, the very first recorded jump was actually successful
 
 ![Jumping GIF](https://8gadgetpack.net/milana/bldc_jump2.gif)
 
-But that turned out to be a fluke. This initial version was so unreliable at jumping, it would only successfully land maybe 1 out of 10 times. Improving that successrate would turn out to be very difficult. Here is a small compilation of some of the many many test jumps, that wern't quite successful:
-
-![Jump Fails GIF](https://8gadgetpack.net/milana/jump_fails8.gif)
-
-Can you see why those jumps failed and how to fix it? If so, you are smarter than I am. I needed more information to debug these issues, and a conventional debugger is of little help here.
+But that turned out to be a fluke. This initial version was so unreliable at jumping, it would only successfully land maybe 1 out of 10 times. Improving that successrate would turn out to be very difficult. [Here](https://8gadgetpack.net/milana/jump_fails8.gif) is a small compilation of some of the many many test jumps, that wern't quite successful. Can you see why those jumps failed and how to fix it? If so, you are smarter than I am. I needed more information to debug these issues, and a conventional debugger is of little help here.
 
 What I ended up doing is to write some software that connected to the robot via WIFI and queried its internal state (which updates roughly at 60Hz). This sofware was also recording these jump attempts with a webcam (also captured with 60Hz) and then displayed all this information in a plotting window. This software also has special handling of ODrive data. ODrive updates at 8000Hz, much faster than the main loop on the robot. ODrive needs to be this fast because it needs to control the current in the 3 wires of the motor very quickly, but sadly communication between the ODrive and the main computer is so slow that it cannot be queried in realtime. In order to still get that information with full precision, I had to store that data on its internal (very limited) RAM during the jump and then retrieve it from there after the jump.
 
@@ -62,7 +58,8 @@ You can see that the initial graph looks very similar, with and without Backcalc
 On the hardware side, I didn't always find one of those: The encoders, the devices that measure the angle of the joints, need to be very accurate so that the motor controller can work. Unfortunately, the strong acceleration while jumping and landing caused the internal structure of these encoders to slip along the axis. I found a solution involving glue and burning plastic with a soldering iron, but it wasn't pretty. EM Noise also was a serious issue. Due to the heavy current the motors require while jumping and the close space due to the robots small size, I had lots of Heisenbugs and data corruption problems. I got them down pretty good by hacking some of the Linux kernel, the ODrive firmware and using insulated wiring, but I'm still not super happy with it.
 
 In the end, I got the jumping to work pretty reliably. It doesn't jump as high as I initially simulated it or hoped, but I guess that's good enough.
-![Jump Simulation and real Jump GIF](https://8gadgetpack.net/milana/sim5.webp)
+
+![Jump Simulation and real Jump GIF](https://8gadgetpack.net/milana/sim8.gif)
 
 I also implemented other features than jumping. It can balance while moving with one leg on a ramp. I added some arms with some Inverse Kinematics control. And I also added a way to communicate with the robot via voice and a local ChatGPT clone (see [here](https://www.youtube.com/watch?v=1e_AJBxF1MY)). But this post is getting long enough, so I just refer to the code and readmes in this repository and this [Youtube Video](https://www.youtube.com/watch?v=lOAjTAtRaGs).
 
