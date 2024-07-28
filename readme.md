@@ -3,7 +3,9 @@
 ![Milana](images/milana.png)
 
 ## Overview
-Milana is a small and relatively cheap robot on two wheels. It has 6 motors on each side:
+Milana is a small and relatively cheap robot on two wheels. For a general description on how I built this robot, see [here](blog_post.md)
+
+The robot has 6 motors on each side:
  - A BDC 280KV motor controlling the wheel.
  - A BDC 100KV motor controlling the knee (used for jumping).
  - A 35kg servo motor controlling the hip.
