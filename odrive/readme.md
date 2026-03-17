@@ -29,6 +29,7 @@ Note: The requested_state assignment in the bottom will start motor calibration.
 odrv0.erase_configuration()
 odrv0.config.uart_baudrate = 921600
 odrv0.config.uart_stop_bits = 2
+odrv0.config.uart_use_ascii_protocol = False
 odrv0.config.brake_resistance = 0
 odrv0.config.max_regen_current = 0
 odrv0.config.dc_max_negative_current = -15
@@ -73,6 +74,7 @@ Note: The requested_state assignment in the bottom will start motor calibration.
 odrv0.erase_configuration()
 odrv0.config.uart_baudrate = 921600
 odrv0.config.uart_stop_bits = 2
+odrv0.config.uart_use_ascii_protocol = False
 odrv0.config.brake_resistance = 0
 odrv0.config.max_regen_current = 0
 odrv0.config.dc_max_negative_current = -15
